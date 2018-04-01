@@ -4,16 +4,14 @@ Active DPI circumvention utility for Linux
 
 What does it do?
 --------------------
-Bypass the blocking of http and even ssl web-sites in countries like Russia, Iran.
+Bypass the blocking of http and https web-sites in countries like Russia, Iran.
 
 
 How it works?
 --------------------
-There are some gaps in deep packet inspection, because of DPI rules written for standart software, omitting all possible cases that are acceptable by standards. (E.g rfc2616) For instance some DPI stumbles, when the "Host:" header is written in a case-insensetive manner. Also TCP fragmentation by modifying TCP window size for bypassing DPI on SSL requests.
+DPI rules written for standart software omitting all possible cases that are acceptable by standards, there are some gaps in deep packet inspection. For instance some DPI stumbles, when the "Host:" header is written in a case-insensetive manner. (RFC 2616) This software simply exploits some of that gaps.
 
-
-Note: You may need [DnsCrypt](https://github.com/jedisct1/dnscrypt-proxy).
-
+**Note:** You may need [DnsCrypt](https://github.com/jedisct1/dnscrypt-proxy).
 
 iptables Rules
 --------------------
@@ -40,18 +38,29 @@ sudo pacman -S libnetfilter_queue
 sudo apt-get install libnetfilter-queue-dev
 ```
 
----
-
 Compilation
 --------------------
 ```bash
 make
-sudo ./notsodeep
 ```
 
 
 **Note:** If you don't want to run the binary with root privileges: `sudo setcap cap_net_admin=ep ./notsodeep`
 
+Newbie Friendly Persistent Usage /w Systemd
+--------------------
+
+```bash
+cd /tmp
+git clone https://github.com/farukuzun/notsodeep.git
+cd notsodeep
+make
+cd ..
+sudo cp -R notsodeep /opt
+sudo cp /opt/notsodeep/notsodeep.service /etc/systemd/system/
+systemctl enable notsodeep.service
+systemctl start notsodeep.service
+```
 
 Contact
 --------------------
