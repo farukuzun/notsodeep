@@ -12,6 +12,9 @@ How it works?
 There are some gaps in deep packet inspection, because of DPI rules written for standart software, omitting all possible cases that are acceptable by standards. (E.g rfc2616) For instance some DPI stumbles, when the "Host:" header is written in a case-insensetive manner. Also TCP fragmentation by modifying TCP window size for bypassing DPI on SSL requests.
 
 
+Note: You may need [DnsCrypt](https://github.com/jedisct1/dnscrypt-proxy).
+
+
 iptables Rules
 --------------------
 
