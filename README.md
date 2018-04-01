@@ -38,10 +38,13 @@ sudo pacman -S libnetfilter_queue
 sudo apt-get install libnetfilter-queue-dev
 ```
 
-Compilation
+Compilation and Running
 --------------------
 ```bash
+git clone https://github.com/farukuzun/notsodeep.git
+cd notsodeep
 make
+sudo ./notsodeep
 ```
 
 
