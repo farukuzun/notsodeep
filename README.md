@@ -2,7 +2,7 @@
 Active DPI circumvention utility for Linux
 
 
-What is it do?
+What does it do?
 --------------------
 Bypass the blocking of http and even ssl web-sites in countries like Russia, Iran.
 
@@ -19,7 +19,7 @@ iptables Rules
 --------------------
 
 ```bash
-iptables -A OUTPUT -p tcp --tcp-flags SYN,ACK SYN,ACK --sport 443 -j NFQUEUE --queue-num 100 --queue-bypass
+iptables -A OUTPUT -p tcp --tcp-flags SYN,ACK SYN,ACK --sport 443 -j NFQUEUE --queue-num 200 --queue-bypass
 iptables -t mangle -I POSTROUTING -p tcp --dport 80 -j NFQUEUE --queue-num 200 --queue-bypass
 ```
 
@@ -31,13 +31,13 @@ Requirements
 #### Arch
 
 ```bash
-pacman -S libnetfilter_queue
+sudo pacman -S libnetfilter_queue
 ```
 
 #### Debian
 
 ```bash
-apt-get install libnetfilter-queue-dev
+sudo apt-get install libnetfilter-queue-dev
 ```
 
 ---
@@ -50,7 +50,7 @@ sudo ./notsodeep
 ```
 
 
-**Note:** If you do not want to run the binary with root privileges: `sudo setcap cap_net_admin=ep ./notsodeep`
+**Note:** If you don't want to run the binary with root privileges: `sudo setcap cap_net_admin=ep ./notsodeep`
 
 
 Contact
