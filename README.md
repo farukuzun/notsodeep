@@ -50,7 +50,7 @@ sudo ./notsodeep
 
 **Note:** If you don't want to run the binary with root privileges: `sudo setcap cap_net_admin=ep ./notsodeep`
 
-Newbie Friendly Persistent Usage /w Systemd
+Newbie Friendly Persistent Usage
 --------------------
 
 ```bash
@@ -62,6 +62,11 @@ cd ..
 sudo cp -R notsodeep /opt
 sudo cp /opt/notsodeep/notsodeep.service /etc/systemd/system/
 systemctl enable notsodeep.service
+iptables -A OUTPUT -p tcp --tcp-flags SYN,ACK SYN,ACK --sport 443 -j NFQUEUE --queue-num 200 --queue-bypass
+iptables -t mangle -I POSTROUTING -p tcp --dport 80 -j NFQUEUE --queue-num 200 --queue-bypass
+iptables-save
+systemctl enable iptables
+systemctl start iptables
 systemctl start notsodeep.service
 ```
 
