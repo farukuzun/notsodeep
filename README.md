@@ -60,15 +60,15 @@ cd notsodeep
 make
 cd ..
 sudo su
-# cp -R notsodeep /opt
-# cp /opt/notsodeep/notsodeep.service /etc/systemd/system/
-# systemctl enable notsodeep.service
-# iptables -A INPUT -p tcp --tcp-flags SYN,ACK SYN,ACK --sport 443 -j NFQUEUE --queue-num 200 --queue-bypass
-# iptables -t mangle -I POSTROUTING -p tcp --dport 80 -j NFQUEUE --queue-num 200 --queue-bypass
-# iptables-save > /etc/iptables/iptables.rules
-# systemctl enable iptables
-# systemctl start iptables
-# systemctl start notsodeep.service
+cp -R notsodeep /opt
+cp /opt/notsodeep/notsodeep.service /etc/systemd/system/
+systemctl enable notsodeep.service
+iptables -A INPUT -p tcp --tcp-flags SYN,ACK SYN,ACK --sport 443 -j NFQUEUE --queue-num 200 --queue-bypass
+iptables -t mangle -I POSTROUTING -p tcp --dport 80 -j NFQUEUE --queue-num 200 --queue-bypass
+iptables-save > /etc/iptables/iptables.rules
+systemctl enable iptables
+systemctl start iptables
+systemctl start notsodeep.service
 ```
 
 Contact
