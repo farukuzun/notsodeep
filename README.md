@@ -17,7 +17,7 @@ iptables Rules
 --------------------
 
 ```bash
-iptables -A OUTPUT -p tcp --tcp-flags SYN,ACK SYN,ACK --sport 443 -j NFQUEUE --queue-num 200 --queue-bypass
+iptables -A INPUT -p tcp --tcp-flags SYN,ACK SYN,ACK --sport 443 -j NFQUEUE --queue-num 200 --queue-bypass
 iptables -t mangle -I POSTROUTING -p tcp --dport 80 -j NFQUEUE --queue-num 200 --queue-bypass
 ```
 
@@ -62,7 +62,7 @@ cd ..
 sudo cp -R notsodeep /opt
 sudo cp /opt/notsodeep/notsodeep.service /etc/systemd/system/
 systemctl enable notsodeep.service
-iptables -A OUTPUT -p tcp --tcp-flags SYN,ACK SYN,ACK --sport 443 -j NFQUEUE --queue-num 200 --queue-bypass
+iptables -A INPUT -p tcp --tcp-flags SYN,ACK SYN,ACK --sport 443 -j NFQUEUE --queue-num 200 --queue-bypass
 iptables -t mangle -I POSTROUTING -p tcp --dport 80 -j NFQUEUE --queue-num 200 --queue-bypass
 iptables-save
 systemctl enable iptables
