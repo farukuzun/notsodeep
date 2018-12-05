@@ -18,7 +18,7 @@ iptables Rules
 
 ```bash
 iptables -A INPUT -p tcp --tcp-flags SYN,ACK SYN,ACK --sport 443 -j NFQUEUE --queue-num 200 --queue-bypass
-iptables -t mangle -I POSTROUTING -p tcp --dport 80 -j NFQUEUE --queue-num 200 --queue-bypass
+iptables -t raw -I PREROUTING -p tcp --sport 80 --tcp-flags SYN,ACK SYN,ACK -j NFQUEUE --queue-num 200 --queue-bypass
 ```
 
 `--queue-bypass` may not work below Linux kernel 2.6.39 and 3.10 to 3.12
@@ -64,7 +64,7 @@ cp -R notsodeep /opt
 cp /opt/notsodeep/notsodeep.service /etc/systemd/system/
 systemctl enable notsodeep.service
 iptables -A INPUT -p tcp --tcp-flags SYN,ACK SYN,ACK --sport 443 -j NFQUEUE --queue-num 200 --queue-bypass
-iptables -t mangle -I POSTROUTING -p tcp --dport 80 -j NFQUEUE --queue-num 200 --queue-bypass
+iptables -t raw -I PREROUTING -p tcp --sport 80 --tcp-flags SYN,ACK SYN,ACK -j NFQUEUE --queue-num 200 --queue-bypass
 iptables-save > /etc/iptables/iptables.rules
 systemctl enable iptables
 systemctl start iptables
