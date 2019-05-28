@@ -35,7 +35,7 @@ sudo pacman -S libnetfilter_queue
 #### Debian
 
 ```bash
-sudo apt-get install libnetfilter-queue-dev
+sudo apt-get install libnetfilter-queue-dev libc6-dev
 ```
 
 Compilation and Running
